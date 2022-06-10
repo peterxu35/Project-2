@@ -1,4 +1,4 @@
-# Chess Guesser
+# Guess the Chess Move
 
 Premise: Sort through a large database of famous games. Try to predict the next move that comes after you see the position on the board! 
 
