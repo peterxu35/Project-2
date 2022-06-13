@@ -17,9 +17,12 @@ router.get("/seed", (req, res) => {
     })
 })
 
+// Index route
+router.get("/", (req, res) => {
+    res.render('players/index', {
+        players: Player.find({})
+    })
+})
 
-router.use((req, res, next) => {
-    res.send('Connected')
-  });
 
 module.exports = router

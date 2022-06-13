@@ -2,7 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const morgan = require("morgan")
 const methodOverride = require("method-override")
-const mongoose = require("mongoose")
+const mongoose = require("./models/connections")
 const path = require("path")
 const PlayerRouter = require('./controllers/players')
 
@@ -16,7 +16,7 @@ app.use(methodOverride("_method"))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public")) 
 
-app.use('/prodcuts', PlayerRouter)
+app.use('/players', PlayerRouter)
 
 app.get("/", (req, res) => {
     res.send("Here1");
