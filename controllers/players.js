@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get("/seed", (req, res) => {
     const testPlayer = {
-        first_name: "Lebron",
+        firstName: "Lebron",
         last_name: "James",
         position: "F",
         img: 'https://i.imgur.com/OWcO7wP.jpg',
@@ -23,6 +23,37 @@ router.get("/", (req, res) => {
         players: Player.find({})
     })
 })
+
+// New route
+router.get("/new", (req, res) => {
+    res.render("players/new")
+})
+
+//Create route
+router.post('/', (req, res) => {
+    Player.create(req.body)
+    .then((data) => {
+        res.redirect('/players')
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+//Show route
+router.get("/:id", (req, res) => {
+    Player.findById(req.params.id)
+        .then((player) => {
+            res.render("players/show", {
+                player: player
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+})
+
+
 
 
 module.exports = router

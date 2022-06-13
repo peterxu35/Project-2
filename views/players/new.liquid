@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+</head>
+
+<body>
+    <h1>Add a Player</h1>
+    <a href="/players/"><button type="button">Back</button></a>
+    <form action="/players" method="POST">
+        <label>
+            First Name:<input type="text" name="first name"/>
+        </label><br>
+        <label>
+            Last Name:<input type="text" name="last name"/>
+        </label><br>
+        <label>
+           Position:<input type="text" name="position"/>
+        </label><br>
+        <label>
+            Image url:<input type="text" name="img"/> 
+        </label><br>
+        <label>
+            Height Feet:<input type="text" name="height_feet"/>
+        </label><br>
+        <label>
+            Height Inches:<input type="text" name="height_inches"/>
+        </label><br>
+        <input type="submit" value="Add new player" />
+    </form>
+</body>
+</html>

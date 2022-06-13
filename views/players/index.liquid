@@ -7,11 +7,11 @@
     <title>Index</title>
 </head>
 <body>
-    <a href="/players/new"><button type="button">Add a player</button>
+    <a href="/players/new"><button type="button">Add a player</button></a>
     {% for player in players %}
     <h3>First Name: {{player.first_name}}</h3>
     <h3>Last Name: {{player.last_name}}</h3>
-    <a href="/players/{{player.id}}"><img src="{{player.img}}">
+    <a href="/players/{{player.id}}"><img src="{{player.img}}"></a>
     <h3>Position: {{player.position}}</h3>
     <h3>Height: {{player.height_feet}} '{{player.height_inches}}</h3>
     {% endfor %}
