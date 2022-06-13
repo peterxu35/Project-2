@@ -3,11 +3,12 @@ const mongoose = require('./connections')
 const { Schema, model } = mongoose
 
 const playersSchema = new Schema({
-    name: { type: String, required: true},
+    first_name: { type: String, required: true},
+    last_name: { type: String, required: true},
     position: String,
     img: String,
-    height: { type: Number},
-    weight: {type: Number}
+    height_feet: { type: Number},
+    weight_inches: {type: Number}
 })
 
 const Player = model("Player", playersSchema)
