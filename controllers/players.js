@@ -29,9 +29,20 @@ router.get("/new", (req, res) => {
     res.render("players/new")
 })
 
+// Delete route
+router.delete("/:id", (req, res) => {
+    Player.findByIdAndRemove(req.params.id)
+        .then((player) => {
+            res.redirect("/players");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+})
+
 //Update route
 router.put("/:id", (req, res) => {
-    player.updateOne({_id: req.params.id}, 
+    Player.updateOne({_id: req.params.id}, 
         {$set: {
             firstName: req.body.firstName, 
             lastName: req.body.lastName, 
@@ -45,6 +56,7 @@ router.put("/:id", (req, res) => {
         })
         .catch((error) => {
             console.log(error);
+            response.json({ error })
         });
 })
 
