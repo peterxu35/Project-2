@@ -6,5 +6,23 @@
     "method-override": "^3.0.0",
     "mongoose": "^6.3.6",
     "morgan": "^1.10.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "project-2",
+  "description": "Premise: Browse through current famous NBA player and learn more about their stats! For any player that you are interested in, leave a review for them. Write about what you feel about the player and compare your opinions with others.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterxu35/Project-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterxu35/Project-2/issues"
+  },
+  "homepage": "https://github.com/peterxu35/Project-2#readme"
 }
