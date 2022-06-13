@@ -40,6 +40,16 @@ router.post('/', (req, res) => {
     })
 })
 
+//Edit Route
+router.get("/:id/edit", (req, res) => {
+    Player.find({name: req.params.id})
+    .then((player) => {
+        res.render("players/edit", {
+            player: player
+        })
+    })
+})
+
 //Show route
 router.get("/:id", (req, res) => {
     Player.findById(req.params.id)

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Update a player</h1>
+        <a href="/players/"><button type="button">Back</button></a>
+        <form action="/players/{{player._id}}?_method=PUT" method="POST">
+        <label>
+           First Name:<input type="text" name="first name" value="{{player.firstName}}"/>
+        </label><br>
+        <label>
+            Last Name:<input type="text" name="last name" value="{{player.last_name}}"/>
+        </label><br>
+        <label>
+            Position:<input type="text" name="position" value="{{player.position}}" />
+        </label><br>
+        <label>
+            Image:<input type="text" name="image" value="{{player.img}}"/>
+        </label><br>
+        <label>
+            Height Feet:<input type="text" name="height feet" value="{{player.height_feet}}" />
+        </label><br>
+        <label>
+            Height Inches:<input type="text" name="height inches" value="{{player.height_inches}}" />
+        </label><br>
+            <input type="submit" value="Update"/>
+    </form>
+</body>
+</html>

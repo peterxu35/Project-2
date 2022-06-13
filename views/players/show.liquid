@@ -16,5 +16,8 @@
         <h3>Position: {{player.position}}</h3>
         <h3>Height: {{player.height_feet}}'{{player.height_inches}} </h3>
         
+        <form action="/players/{{player._id}}/edit">
+            <input type="submit" value="Edit">
+            </form>
 </body>
 </html> 
