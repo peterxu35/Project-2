@@ -6,7 +6,7 @@ const router = express.Router()
 router.get("/seed", (req, res) => {
     const testPlayer = {
         firstName: "Lebron",
-        last_name: "James",
+        lastName: "James",
         position: "F",
         img: 'https://i.imgur.com/OWcO7wP.jpg',
         height_feet: 6,
@@ -27,6 +27,25 @@ router.get("/", (req, res) => {
 // New route
 router.get("/new", (req, res) => {
     res.render("players/new")
+})
+
+//Update route
+router.put("/:id", (req, res) => {
+    player.updateOne({_id: req.params.id}, 
+        {$set: {
+            firstName: req.body.firstName, 
+            lastName: req.body.lastName, 
+            img: req.body.img,
+            position: req.body.position,
+            height_feet: req.body.height_feet,
+            height_inches: req.body.height_inches
+        }})
+        .then((player) => {
+            res.redirect("/players");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 })
 
 //Create route

@@ -4,7 +4,7 @@ const { Schema, model } = mongoose
 
 const playersSchema = new Schema({
     first_name: String,
-    last_name: { type: String },
+    lastName: { type: String },
     position: String,
     img: String,
     height_feet: { type: Number},
