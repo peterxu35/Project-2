@@ -3,7 +3,7 @@ const mongoose = require('./connections')
 const { Schema, model } = mongoose
 
 const playersSchema = new Schema({
-    first_name: String,
+    firstName: String,
     lastName: { type: String },
     position: String,
     img: String,

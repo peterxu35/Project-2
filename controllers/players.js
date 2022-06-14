@@ -56,7 +56,6 @@ router.put("/:id", (req, res) => {
         })
         .catch((error) => {
             console.log(error);
-            response.json({ error })
         });
 })
 
@@ -73,7 +72,7 @@ router.post('/', (req, res) => {
 
 //Edit Route
 router.get("/:id/edit", (req, res) => {
-    Player.find({name: req.params.id})
+    Player.findById(req.params.id)
     .then((player) => {
         res.render("players/edit", {
             player: player
