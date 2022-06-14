@@ -5,7 +5,7 @@ module.exports = {
 };
 
 function create(req, res) {
-  Player.findById(req.params.id, function(err, movie) {
+  Player.findById(req.params.id, function(err, player) {
     player.reviews.push(req.body);
     player.save(function(err) {
       res.redirect(`/players/${player._id}`);
