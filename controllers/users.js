@@ -3,6 +3,7 @@
 ////////////////////////////////////////
 const express = require("express");
 const User = require("../models/user");
+const Player = require("../models/player")
 const bcrypt = require("bcryptjs");
 
 /////////////////////////////////////////
@@ -16,7 +17,7 @@ const router = express.Router();
 
 // The Signup Routes (Get => form, post => submit form)
 router.get("/signup", (req, res) => {
-  res.render("user/signup.liquid");
+  res.render("user/signup");
 });
 
 router.post("/signup", (req, res) => {
@@ -29,8 +30,39 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  res.send("login");
-});
+  // get the data from the request body
+  const { username, password } = req.body;
+
+  // search for the user
+  Users.findOne({ username: username })
+      .then(async (user) => {
+          // checking if the user exists
+          if (user) {
+              // compare password
+              const result = await bcrypt.compare(password, user.password)
+              if (result) {
+                  // store properties in the session
+                  req.session.username = username
+                  req.session.loggedIn = true
+
+                  // redirect to users account page
+                  res.redirect(`/users/${user._id}/account`)
+              }
+              else {
+                  res.json({ error: "password doesen't match" })
+              }
+          }
+          else {
+              res.json({ error: "user doesen't exist" })
+          }
+      })
+      .catch((error) => {
+          console.log(error)
+          res.json({ error })
+      })
+})
+
+
 
 //////////////////////////////////////////
 // Export the Router
