@@ -27,7 +27,7 @@
             <br>
             <h2>Reviews</h2>
         <form action="/players/{{player._id}}/reviews">
-            Rating: {{player.reviews.rating}}
+            Rating: <input type="text" name="rating" value="{{player.review.rating}}" />
             <br>
             Review:
             <textarea name="content"></textarea>
