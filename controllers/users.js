@@ -20,8 +20,23 @@ router.get("/signup", (req, res) => {
   res.render("user/signup");
 });
 
-router.post("/signup", (req, res) => {
-  res.send("signup");
+router.post("/signup", async (req, res) => {
+  // encrpt password
+  req.body.password = await bcrypt.hash(
+    req.body.password,
+    await bcrypt.genSalt(10)
+  );
+  //   create user
+  User.create(req.body)
+    .then((user) => {
+      // redirect to login page
+      res.redirect("/user/login");
+    })
+    .catch((error) => {
+      // send error as json
+      console.log(error);
+      res.json({ error });
+    });
 });
 
 // The login Routes (Get => form, post => submit form)
