@@ -13,14 +13,9 @@ const { Schema, model } = mongoose;
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  playersList: [{type: Schema.Types.ObjectId, ref: 'Players'}]
 });
 
-const reviewSchema = new Schema({
-    content: String,
-    rating: {type: Number, min: 1, max: 99, default: 85}
-}, {
-    timestamps: true,
-})
 
 // make user model
 const User = model("User", userSchema);
