@@ -13,6 +13,33 @@ router.get("/:id/edit", (req, res) => {
     })
 })
 
+//Update route
+router.put("/:id/reviews", (req, res) => {
+    Player.updateOne({_id: req.params.id}, 
+        {$set: {
+            content: req.body.content, 
+            rating: req.body.rating, 
+        }})
+        .then((player) => {
+            res.redirect("/players/:id");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+})
+
+// Delete route
+router.delete("/:id", (req, res) => {
+    Player.findByIdAndRemove(req.params.id)
+        .then((player) => {
+            res.redirect("/players/:id");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+})
+
+
 //Create
 router.post('/players/:id/reviews', (req, res) => {
     Player.findById(req.params.id, function(err, player) {
