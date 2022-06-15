@@ -86,7 +86,7 @@ router.get("/logout", (req, res) => {
 });
 
   // search for the user
-  Users.findOne({ username })
+  User.findOne({ username })
       .then(async (user) => {
           // checking if the user exists
           if (user) {
