@@ -5,7 +5,8 @@ const methodOverride = require("method-override")
 const mongoose = require("./models/connections")
 const path = require("path")
 const PlayerRouter = require('./controllers/players')
-const UserRouter = require('./controllers/user')
+const UserRouter = require('./controllers/users')
+const ReviewsRouter = require('./controllers/reviews')
 
 const app = require("liquid-express-views")(express(), {
     root: [path.resolve(__dirname, "views/")],
@@ -19,6 +20,7 @@ app.use(express.static("public"))
 
 app.use('/user', UserRouter)
 app.use('/players', PlayerRouter)
+app.use('/', ReviewsRouter)
 
 app.get("/", (req, res) => {
     res.send("Here1");
