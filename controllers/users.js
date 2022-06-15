@@ -44,12 +44,49 @@ router.get("/login", (req, res) => {
   res.render("user/login.liquid");
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   // get the data from the request body
   const { username, password } = req.body;
+  // search for the user
+  User.findOne({ username })
+    .then(async (user) => {
+      // check if user exists
+      if (user) {
+        // compare password
+        const result = await bcrypt.compare(password, user.password);
+        if (result) {
+          // store some properties in the session object
+          req.session.username = username;
+          req.session.userId = user._id;
+          req.session.loggedIn = true;
+          // redirect to fruits page if successful
+          res.redirect("/players");
+        } else {
+          // error if password doesn't match
+          res.json({ error: "password doesn't match" });
+        }
+      } else {
+        // send error if user doesn't exist
+        res.json({ error: "user doesn't exist" });
+      }
+    })
+    .catch((error) => {
+      // send error as json
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+// logout route
+router.get("/logout", (req, res) => {
+  // destroy session and redirect to main page
+  req.session.destroy((err) => {
+    res.redirect("/ryokans");
+  });
+});
 
   // search for the user
-  Users.findOne({ username: username })
+  Users.findOne({ username })
       .then(async (user) => {
           // checking if the user exists
           if (user) {
