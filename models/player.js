@@ -8,7 +8,9 @@ const playersSchema = new Schema({
     position: String,
     img: String,
     height_feet: { type: Number},
-    height_inches: {type: Number}
+    height_inches: {type: Number},
+    reviews: [reviewSchema],
+    teams: [{type: Schema.Types.ObjectId, ref: 'Team'}]
 })
 
 const Player = model("Player", playersSchema)
