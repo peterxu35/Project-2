@@ -15,7 +15,8 @@ router.post('/players/:id/reviews', (req, res) => {
 })
 
 //Delete
-router.delete("/players/:id/reviews/:reviewid", (req, res) => {
+router.delete("/delete/:id/:reviewid", (req, res) => {
+    const playerId = req.params.playerId
     Player.findByIdAndRemove(req.params.id)
         .then((player) => {
             res.redirect("/players/:id");

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Ryokan Website</title>
+
+    <!-- Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+
+    <!-- OUR CSS AND JS -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="navBar">
+      <div>
+        <header>
+          <a href="/players"><h2>NBA Tracker</h2></a>
+        </header>
+      </div>
+
+      {% if login %}
+      <div class="buttonContainer">
+        <div>
+          <a href="/user/signup"><button class="button">Logout</button></a>
+        </div>
+        <div>
+          <a href="/user/myaccount"
+            ><button class="button">My Account</button></a>
+        </div>
+      </div>
+      {% else %}
+      <div class="buttonContainer">
+        <div>
+          <a href="/user/signup"><button class="button">Signup</button></a>
+        </div>
+        <div>
+          <a href="/user/login"><button class="button">Login</button></a>
+        </div>
+      </div>
+      {% endif %}
+      <div>
+        <h4> {{ username }}</h4>
+      </div>
+    </div>
+
+    <div id="mainContainer">
+      <main>{% block content %}My default content{% endblock %}</main>
+
+    </div>
+  </body>
+</html>
