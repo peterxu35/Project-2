@@ -17,20 +17,22 @@ router.get("/seed", (req, res) => {
     })
 })
 
-router.use((req, res, next) => {
-    if (req.session.loggedIn) {
-      next();
-    } else {
-      res.redirect("/users/login");
-    }
-  });
+// router.use((req, res, next) => {
+//     if (req.session.loggedIn) {
+//       next();
+//     } else {
+//       res.redirect("/users/login");
+//     }
+//   });
 
 // Index route
 router.get("/", (req, res) => {
+    console.log("here3", Player.find({}))
     res.render('players/index', {
         players: Player.find({})
     })
 })
+
 
 // New route
 router.get("/new", (req, res) => {
@@ -69,6 +71,7 @@ router.put("/:id", (req, res) => {
 
 //Create route
 router.post('/', (req, res) => {
+    console.log(req.body)
     Player.create(req.body)
     .then((data) => {
         res.redirect('/players')
@@ -90,17 +93,19 @@ router.get("/:id/edit", (req, res) => {
 
 //Show route
 router.get("/:id", (req, res) => {
-    Player.findById(req.params.id)
-        .then((player) => {
-            res.render("players/show", {
+    console.log("here", req.params)
+    Player.findById(req.params.id) 
+    .then((player) => {
+        console.log("here2", player)    
+        res.render("players/show", {
                 player: player
             })
+            // console.log("here3")
         })
         .catch((error) => {
             console.log(error);
         })
 })
-
 
 
 
