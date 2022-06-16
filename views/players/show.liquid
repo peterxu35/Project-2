@@ -26,7 +26,7 @@
             <br>
             <br>
             <h2>Reviews</h2>
-        <form action="/players/{{player._id}}/reviews">
+        <form action="/players/{{player._id}}/reviews" method="POST">
             Rating: <input type="text" name="rating" value="{{player.review.rating}}" />
             <br>
             Review:
@@ -35,18 +35,35 @@
         </form>
 
 
-        {% if movie.reviews.length %}
+        {% if player.reviews.length > 0 %}
             <table>
               <thead>
                 <tr>
-                  <th>Date</th>
+                  <!-- <th>Date</th> -->
                   <th>Review</th>
                   <th>Rating</th>
                 </tr>
               </thead>
               <tbody>
+                {% for r in player.reviews %}
+                  <tr>
+                    <td>{{ r.content }}</td>
+                    <td>{{ r.rating }}</td>
+                  </tr>
+                  <form action="/players/{{ player._id }}/review/{{r._id}}?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
+                {% endfor %}
+                <tr>
+                  <td colspan="2"></td>
+                </tr>
+              </tbody>
+              </table>
           {% else %}
             <h5>No Reviews Yet</h5>
+            hi
           {% endif %}
+
+          
 </body>
 </html> 

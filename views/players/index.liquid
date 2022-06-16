@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
 </head>
+
 <body>
     <a href="/players/new"><button type="button">Add a player</button></a>
     {% for player in players %}
     <h3>First Name: {{player.firstName}}</h3>
     <h3>Last Name: {{player.lastName}}</h3>
-    <a href="/players/{{player.id}}"><img src="{{player.img}}">
-    <h3>Position: {{player.position}}</h3></a>
+
+    <img src="{{player.img}}">
+    <a href="/players/{{player.id}}">
+        <h3>Position: {{player.position}}</h3>
+    </a>
     <h3>Height: {{player.height_feet}} '{{player.height_inches}}</h3>
     {% endfor %}
 
 </body>
-</html>  
+
+</html>
