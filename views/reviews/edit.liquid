@@ -1,0 +1,10 @@
+{% layout "layout.liquid" %} {% block content %}
+
+<h2>Edit Review</h2>
+        <form action="/players/{{player._id}}/reviews" method="POST">
+            Rating: <input type="text" name="rating" value="{{player.review.rating}}" />
+            <br>
+            Review:
+            <textarea name="content"></textarea>
+            <input type="submit" value="Add Review">
+        </form>

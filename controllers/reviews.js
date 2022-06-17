@@ -39,22 +39,44 @@ router.delete("/players/:id/review/:reviewid", (req, res) => {
 })
 
 //Update route
-router.put("/:id", (req, res) => {
-    Player.updateOne({_id: req.params.id}, 
-        {$set: {
-            firstName: req.body.firstName, 
-            lastName: req.body.lastName, 
-            img: req.body.img,
-            position: req.body.position,
-            height_feet: req.body.height_feet,
-            height_inches: req.body.height_inches
-        }})
-        .then((player) => {
-            res.redirect("/players");
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+router.put("/players/:id/review/:reviewid", (req, res) => {
+    const playerId = req.params.id
+    const reviewId = req.params.reviewid
+    Player.findById(playerId)
+    .then((players) => {
+        console.log("players", players)
+        const theReviews = players.reviews.id(reviewId)
+        if (String(theReviews._id) === req.params.reviewid){
+            theReviews.content = req.body.content
+            theReviews.rating = req.body.rating
+            return user.save()
+        }
+        else {
+            return
+        }
+    })
+    .then(players => {
+        res.redirect(`/players/${players.id}`)
+    })
 })
+
+
+//Edit Route
+router.get("/players/:id/review/:reviewid", (req, res) => {
+    const playerId = req.params.id
+    const reviewId = req.params.reviewid
+    Player.findById(playerId)
+        .then((players) => {
+            const theReviews = players.reviews.id(reviewId)
+            if (String(theReviews._id) === req.params.reviewid){
+                res.render("reviews/edit", {
+
+                })
+            }
+            else {
+                return
+            }
+        })
+    })
 
 module.exports = router

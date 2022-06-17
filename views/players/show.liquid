@@ -55,6 +55,10 @@
                   <form action="/players/{{ player._id }}/review/{{r._id}}?_method=DELETE" method="POST">
                     <input type="submit" value="Delete">
                 </form>
+                <br>
+                <form action="/players/{{ player._id }}/review/{{r._id}}/edit">
+                  <input type="submit" value="Edit">
+              </form>
                 {% endfor %}
                 <tr>
                   <td colspan="2"></td>
