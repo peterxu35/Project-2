@@ -11,7 +11,7 @@ mongoose.connect(MONGODB_URI, CONFIG);
 const db = mongoose.connection
 
 mongoose.connection
-  .on("open", () => console.log("Connected to Mongoose"))
+  .on("open", () => console.log(mongoose.connection.readyState))
   .on("close", () => console.log("Disconnected from Mongoose"))
   .on("error", (error) => console.log(error));
 

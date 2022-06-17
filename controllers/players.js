@@ -27,7 +27,6 @@ router.get("/seed", (req, res) => {
 
 // Index route
 router.get("/", (req, res) => {
-    console.log("here3", Player.find({}))
     res.render('players/index', {
         players: Player.find({})
     })
@@ -93,18 +92,22 @@ router.get("/:id/edit", (req, res) => {
 
 //Show route
 router.get("/:id", (req, res) => {
-    console.log("here", req.params)
-    Player.findById(req.params.id) 
-    .then((player) => {
-        console.log("here2", player)    
-        res.render("players/show", {
-                player: player
-            })
-            // console.log("here3")
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+    console.log("REQ", req.params.id)
+    Player.findById(req.params.id, function(err, player) {
+        console.log("player", player)
+        res.render('players/show', { title: 'Movie Detail', player });
+      });
+    // Player.findById(req.params.id) 
+    // .then((player) => {  
+    //     console.log("player.reviews", player.reviews)  
+    //     res.render("players/show", {
+    //             player: player
+    //         })
+    //         // console.log("here3")
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     })
 })
 
 

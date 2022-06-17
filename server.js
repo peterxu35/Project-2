@@ -33,9 +33,9 @@ app.use('/user', UserRouter)
 app.use('/players', PlayerRouter)
 app.use('/', ReviewsRouter)
 
-app.get("/", (req, res) => {
-    res.send("Here1");
-  });
+// app.get("/", (req, res) => {
+//     res.send("Here1");
+//   });
 
 
 const PORT = process.env.PORT;
